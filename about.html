@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Luminary Studio</title>
+
+ 
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: 'About',
+      page_location: window.location.href
+    });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --cream: #f5f0e8;
+      --gold: #c9a84c;
+      --rust: #c4622d;
+      --mist: #e8e2d6;
+      --mid: #6b6560;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--cream); color: var(--ink); overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3rem;
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--cream); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace; font-size: .75rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; opacity: .6;
+      transition: opacity .3s;
+    }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .nav-links a.active { border-bottom: 1px solid var(--gold); }
+
+    /* PAGE HEADER */
+    .page-header {
+      min-height: 70vh; background: var(--ink);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 3rem 5rem; position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: 'ABOUT';
+      position: absolute; right: -2rem; bottom: -3rem;
+      font-size: 18rem; font-weight: 600; letter-spacing: -.04em;
+      color: rgba(245,240,232,.025); line-height: 1; pointer-events: none;
+    }
+    .page-header-label {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp .8s .3s forwards;
+    }
+    .page-header-h1 {
+      font-size: clamp(3rem, 6vw, 6.5rem); font-weight: 300;
+      line-height: .95; color: var(--cream);
+      opacity: 0; animation: fadeUp .8s .5s forwards;
+    }
+    .page-header-h1 em { font-style: italic; color: var(--gold); }
+
+    /* INTRO */
+    .intro {
+      display: grid; grid-template-columns: 1fr 2fr;
+      gap: 5rem; padding: 7rem 3rem; align-items: start;
+    }
+    .intro-label {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); padding-top: .5rem; position: sticky; top: 8rem;
+    }
+    .intro-body { font-size: 1.4rem; font-weight: 300; line-height: 1.7; color: var(--mid); }
+    .intro-body strong { color: var(--ink); font-weight: 600; }
+    .intro-body p + p { margin-top: 2rem; }
+
+    /* VALUES */
+    .values-section { padding: 0 3rem 8rem; }
+    .values-title {
+      font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 300; margin-bottom: 4rem;
+    }
+    .values-title em { font-style: italic; color: var(--rust); }
+    .values-list { display: flex; flex-direction: column; }
+    .value-row {
+      display: grid; grid-template-columns: 5rem 1fr 2fr;
+      gap: 3rem; align-items: start;
+      padding: 2.5rem 0; border-bottom: 1px solid rgba(10,10,10,.1);
+      transition: background .3s;
+    }
+    .value-row:last-child { border-bottom: none; }
+    .value-row:hover { background: rgba(10,10,10,.025); margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+    .value-num {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .2em; color: var(--gold); padding-top: .3rem;
+    }
+    .value-name { font-size: 1.7rem; font-weight: 400; }
+    .value-desc { font-size: 1rem; font-weight: 300; line-height: 1.7; color: var(--mid); }
+
+    /* TEAM */
+    .team-section { background: var(--ink); padding: 7rem 3rem; }
+    .team-label {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .team-title {
+      font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 300;
+      color: var(--cream); margin-bottom: 4rem;
+    }
+    .team-title em { font-style: italic; color: var(--rust); }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .team-card {
+      border: 1px solid rgba(245,240,232,.08);
+      padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color .3s;
+    }
+    .team-card:hover { border-color: var(--gold); }
+    .team-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--gold); opacity: .25; margin-bottom: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--cream);
+    }
+    .team-name { font-size: 1.3rem; font-weight: 400; color: var(--cream); margin-bottom: .3rem; }
+    .team-role {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .team-bio { font-size: .95rem; font-weight: 300; line-height: 1.6; color: rgba(245,240,232,.45); }
+
+    /* CTA BAND */
+    .cta-band {
+      padding: 7rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(10,10,10,.1);
+    }
+    .cta-band-text { font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 300; }
+    .cta-band-text em { font-style: italic; color: var(--rust); }
+    .btn-primary {
+      display: inline-block; padding: .9rem 2.5rem;
+      background: var(--ink); color: var(--cream);
+      font-family: 'DM Mono', monospace; font-size: .75rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      text-decoration: none; transition: background .3s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--rust); transform: translateY(-2px); }
+
+    footer {
+      background: var(--ink); color: var(--cream);
+      padding: 3rem; border-top: 1px solid rgba(245,240,232,.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .15em; color: rgba(245,240,232,.35);
+    }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(245,240,232,.4); text-decoration: none; transition: color .3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s, transform .8s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .intro { grid-template-columns: 1fr; gap: 2rem; }
+      .value-row { grid-template-columns: 3rem 1fr; }
+      .value-desc { display: none; }
+      .team-grid { grid-template-columns: 1fr; }
+      .cta-band { flex-direction: column; gap: 2rem; }
+      nav { padding: 1.2rem 1.5rem; }
+      .page-header { padding: 7rem 1.5rem 4rem; }
+      .intro, .values-section, .team-section, .cta-band { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<nav>
+  <a class="nav-logo" href="index.html">Luminary</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="page-header-label">Our Story</p>
+  <h1 class="page-header-h1">Built on<br>craft, driven<br>by <em>curiosity.</em></h1>
+</header>
+
+<section class="intro">
+  <div class="intro-label reveal">Who We Are</div>
+  <div class="intro-body reveal">
+    <p>Luminary was founded in 2018 by a small team of designers, strategists, and storytellers who believed <strong>the best creative work comes from deep listening</strong> — not just clever execution.</p>
+    <p>Today we partner with founders, brands, and institutions across the world to help them find their voice and make it impossible to ignore. We're small by design, obsessive by nature.</p>
+    <p>Every project begins with one question: <strong>what do you want people to feel?</strong> The answer shapes everything we make.</p>
+  </div>
+</section>
+
+<section class="values-section">
+  <h2 class="values-title reveal">The things we<br><em>believe in.</em></h2>
+  <div class="values-list">
+    <div class="value-row reveal">
+      <span class="value-num">01</span>
+      <span class="value-name">Honesty</span>
+      <p class="value-desc">We tell clients what they need to hear, not what they want. Good creative work is a partnership, and that starts with trust.</p>
+    </div>
+    <div class="value-row reveal">
+      <span class="value-num">02</span>
+      <span class="value-name">Craft</span>
+      <p class="value-desc">Details matter enormously. The curve of a letterform, the weight of a pause — we sweat the small stuff because small things compound.</p>
+    </div>
+    <div class="value-row reveal">
+      <span class="value-num">03</span>
+      <span class="value-name">Curiosity</span>
+      <p class="value-desc">Every brief is a chance to learn something new. We approach each project like a student — asking questions, testing assumptions, staying open.</p>
+    </div>
+    <div class="value-row reveal">
+      <span class="value-num">04</span>
+      <span class="value-name">Restraint</span>
+      <p class="value-desc">We believe in removing, not adding. The best solution is usually the simplest one — and getting there takes discipline.</p>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <p class="team-label reveal">The Team</p>
+  <h2 class="team-title reveal">People who care<br>about <em>doing it right.</em></h2>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">A</div>
+      <div class="team-name">Anika Reyes</div>
+      <div class="team-role">Founder & Creative Director</div>
+      <p class="team-bio">15 years shaping brands for global clients. Anika leads creative strategy and keeps the studio's work honest.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">M</div>
+      <div class="team-name">Marcus Osei</div>
+      <div class="team-role">Design Director</div>
+      <p class="team-bio">Former Pentagram. Marcus brings rigorous systems thinking to every visual identity and design system we build.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">S</div>
+      <div class="team-name">Selin Yılmaz</div>
+      <div class="team-role">Head of Strategy</div>
+      <p class="team-bio">Trained in behavioral economics and brand theory. Selin makes sure our creative is grounded in what actually moves people.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2 class="cta-band-text reveal">Ready to<br>make something <em>remarkable?</em></h2>
+  <a href="contact.html" class="btn-primary reveal" onclick="trackNavClick('about_cta_contact')">Get in Touch</a>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2025 Luminary Studio. All rights reserved.</span>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  function trackNavClick(label) {
+    gtag('event', 'navigation_click', {
+      event_category: 'navigation',
+      event_label: label,
+      page_title: 'About'
+    });
+    dataLayer.push({ event: 'nav_click', nav_label: label, page: 'about' });
+  }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // GA4: time on page (engagement)
+  let startTime = Date.now();
+  window.addEventListener('beforeunload', () => {
+    const seconds = Math.round((Date.now() - startTime) / 1000);
+    gtag('event', 'time_on_page', { page_title: 'About', seconds_on_page: seconds });
+  });
+
+  // GA4 scroll depth
+  let scrollMarks = { 25: false, 50: false, 75: false, 90: false };
+  window.addEventListener('scroll', () => {
+    const pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    Object.keys(scrollMarks).forEach(mark => {
+      if (!scrollMarks[mark] && pct >= mark) {
+        scrollMarks[mark] = true;
+        gtag('event', 'scroll_depth', { depth_percentage: parseInt(mark), page_title: 'About' });
+        dataLayer.push({ event: 'scroll_depth', depth: mark + '%', page: 'about' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
