@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Luminary Studio</title>
+
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: 'Contact',
+      page_location: window.location.href
+    });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --cream: #f5f0e8;
+      --gold: #c9a84c;
+      --rust: #c4622d;
+      --mist: #e8e2d6;
+      --mid: #6b6560;
+      --error: #c4622d;
+      --success: #3a7d44;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--cream); color: var(--ink); overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3rem;
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--cream); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace; font-size: .75rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; opacity: .6; transition: opacity .3s;
+    }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .nav-links a.active { border-bottom: 1px solid var(--gold); }
+
+    .page-header {
+      min-height: 55vh; background: var(--ink);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 3rem 5rem; position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: 'HELLO';
+      position: absolute; right: -2rem; bottom: -3rem;
+      font-size: 18rem; font-weight: 600; letter-spacing: -.04em;
+      color: rgba(245,240,232,.025); line-height: 1; pointer-events: none;
+    }
+    .page-header-label {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp .8s .3s forwards;
+    }
+    .page-header-h1 {
+      font-size: clamp(3rem, 6vw, 6.5rem); font-weight: 300;
+      line-height: .95; color: var(--cream);
+      opacity: 0; animation: fadeUp .8s .5s forwards;
+    }
+    .page-header-h1 em { font-style: italic; color: var(--gold); }
+
+    /* CONTACT LAYOUT */
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      min-height: 80vh;
+    }
+
+    /* LEFT PANEL */
+    .contact-info {
+      padding: 5rem 3rem;
+      background: var(--mist);
+      border-right: 1px solid rgba(10,10,10,.1);
+    }
+    .info-section { margin-bottom: 3.5rem; }
+    .info-label {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .info-body {
+      font-size: 1.1rem; font-weight: 300; line-height: 1.7; color: var(--mid);
+    }
+    .info-body a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); }
+    .info-body a:hover { color: var(--rust); }
+
+    .availability-dot {
+      display: inline-block; width: 8px; height: 8px;
+      background: #3a7d44; border-radius: 50%; margin-right: .5rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .availability-text {
+      font-family: 'DM Mono', monospace; font-size: .7rem;
+      letter-spacing: .15em; text-transform: uppercase;
+    }
+
+    .process-steps { list-style: none; }
+    .process-steps li {
+      display: flex; gap: 1rem; padding: .75rem 0;
+      border-bottom: 1px solid rgba(10,10,10,.07); align-items: flex-start;
+    }
+    .process-steps li:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      color: var(--gold); flex-shrink: 0; padding-top: .25rem;
+    }
+    .step-text { font-size: 1rem; font-weight: 300; color: var(--mid); line-height: 1.5; }
+
+    /* FORM PANEL */
+    .contact-form-wrap {
+      padding: 5rem 3rem;
+    }
+    .form-title { font-size: 2rem; font-weight: 300; margin-bottom: 3rem; }
+    .form-title em { font-style: italic; color: var(--rust); }
+
+    .form-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+    }
+    .form-field { display: flex; flex-direction: column; }
+    .form-field.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--mid); margin-bottom: .6rem;
+    }
+    label .required { color: var(--gold); }
+
+    input, select, textarea {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 300;
+      background: transparent;
+      border: none; border-bottom: 1px solid rgba(10,10,10,.2);
+      padding: .6rem 0; color: var(--ink);
+      outline: none; transition: border-color .3s;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-bottom-color: var(--gold);
+    }
+    input.error, select.error, textarea.error {
+      border-bottom-color: var(--error);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c9a84c' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0 center; padding-right: 1.5rem; }
+
+    .field-error {
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      color: var(--error); margin-top: .4rem;
+      opacity: 0; transform: translateY(-4px);
+      transition: opacity .25s, transform .25s;
+    }
+    .field-error.visible { opacity: 1; transform: translateY(0); }
+
+    /* BUDGET SELECTOR */
+    .budget-options { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .budget-option {
+      padding: .45rem 1rem;
+      border: 1px solid rgba(10,10,10,.15); cursor: pointer;
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--mid); background: transparent;
+      transition: all .25s;
+    }
+    .budget-option:hover { border-color: var(--gold); color: var(--ink); }
+    .budget-option.selected { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+    /* CHECKBOX */
+    .checkbox-wrap {
+      display: flex; align-items: flex-start; gap: .75rem;
+      cursor: pointer; margin-top: .5rem;
+    }
+    .checkbox-wrap input[type="checkbox"] {
+      appearance: none; width: 18px; height: 18px; min-width: 18px;
+      border: 1px solid rgba(10,10,10,.3); background: transparent;
+      cursor: pointer; position: relative; border-radius: 0; padding: 0;
+      transition: background .2s, border-color .2s;
+    }
+    .checkbox-wrap input[type="checkbox"]:checked {
+      background: var(--gold); border-color: var(--gold);
+    }
+    .checkbox-wrap input[type="checkbox"]:checked::after {
+      content: '✓'; position: absolute; top: -1px; left: 2px;
+      font-size: .75rem; color: var(--ink); font-family: sans-serif;
+    }
+    .checkbox-label {
+      font-size: .95rem; font-weight: 300; color: var(--mid); line-height: 1.5;
+    }
+
+    /* SUBMIT */
+    .form-submit { margin-top: 2.5rem; display: flex; align-items: center; gap: 2rem; }
+    .btn-submit {
+      display: inline-flex; align-items: center; gap: .75rem;
+      padding: 1rem 2.8rem; background: var(--ink); color: var(--cream);
+      font-family: 'DM Mono', monospace; font-size: .75rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: background .3s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-submit:hover { background: var(--rust); transform: translateY(-2px); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-arrow { transition: transform .3s; }
+    .btn-submit:hover .btn-arrow { transform: translateX(4px); }
+    .form-note {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .1em; color: var(--mid);
+    }
+
+    /* SUCCESS STATE */
+    .success-panel {
+      display: none;
+      flex-direction: column; align-items: flex-start; justify-content: center;
+      padding: 5rem 3rem; gap: 2rem;
+    }
+    .success-panel.visible { display: flex; }
+    .success-icon {
+      width: 72px; height: 72px; border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--gold);
+      animation: fadeUp .6s forwards;
+    }
+    .success-title {
+      font-size: 2.5rem; font-weight: 300; line-height: 1.1;
+      animation: fadeUp .6s .15s both;
+    }
+    .success-title em { font-style: italic; color: var(--rust); }
+    .success-body {
+      font-size: 1.1rem; font-weight: 300; line-height: 1.7; color: var(--mid);
+      max-width: 45ch; animation: fadeUp .6s .3s both;
+    }
+    .success-meta {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .15em; color: var(--gold);
+      animation: fadeUp .6s .45s both;
+    }
+
+    footer {
+      background: var(--ink); color: var(--cream);
+      padding: 3rem; border-top: 1px solid rgba(245,240,232,.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .15em; color: rgba(245,240,232,.35);
+    }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(245,240,232,.4); text-decoration: none; transition: color .3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(.85); }
+    }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s, transform .8s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-info { border-right: none; border-bottom: 1px solid rgba(10,10,10,.1); padding: 3rem 1.5rem; }
+      .contact-form-wrap { padding: 3rem 1.5rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      nav { padding: 1.2rem 1.5rem; }
+      .page-header { padding: 7rem 1.5rem 4rem; }
+      .form-submit { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<nav>
+  <a class="nav-logo" href="index.html">Luminary</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="page-header-label">Get in Touch</p>
+  <h1 class="page-header-h1">Let's build<br>something<br><em>together.</em></h1>
+</header>
+
+<div class="contact-layout">
+
+  <!-- LEFT INFO PANEL -->
+  <aside class="contact-info">
+    <div class="info-section reveal">
+      <p class="info-label">Current Availability</p>
+      <p class="info-body">
+        <span class="availability-dot"></span>
+        <span class="availability-text">Open to new projects</span>
+      </p>
+      <p class="info-body" style="margin-top:.75rem;">We're accepting briefs for Q3 2025 onwards.</p>
+    </div>
+
+    <div class="info-section reveal">
+      <p class="info-label">Reach Us Directly</p>
+      <p class="info-body">
+        <a href="mailto:hello@luminary.studio">hello@luminary.studio</a><br>
+        <a href="tel:+15551234567">+1 (555) 123-4567</a>
+      </p>
+    </div>
+
+    <div class="info-section reveal">
+      <p class="info-label">Based In</p>
+      <p class="info-body">New York, NY<br>Open to remote worldwide.</p>
+    </div>
+
+    <div class="info-section reveal">
+      <p class="info-label">Our Process</p>
+      <ul class="process-steps">
+        <li><span class="step-num">01</span><span class="step-text">Discovery call (30 min)</span></li>
+        <li><span class="step-num">02</span><span class="step-text">Proposal & scope</span></li>
+        <li><span class="step-num">03</span><span class="step-text">Kickoff & deep dive</span></li>
+        <li><span class="step-num">04</span><span class="step-text">Concept presentation</span></li>
+        <li><span class="step-num">05</span><span class="step-text">Refinement & delivery</span></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- FORM PANEL -->
+  <main class="contact-form-wrap" id="formPanel">
+    <h2 class="form-title reveal">Tell us about<br>your <em>project.</em></h2>
+
+    <form id="contactForm" novalidate>
+      <div class="form-grid">
+
+        <div class="form-field reveal">
+          <label for="firstName">First Name <span class="required">*</span></label>
+          <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name" />
+          <span class="field-error" id="err-firstName">Please enter your first name.</span>
+        </div>
+
+        <div class="form-field reveal">
+          <label for="lastName">Last Name <span class="required">*</span></label>
+          <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name" />
+          <span class="field-error" id="err-lastName">Please enter your last name.</span>
+        </div>
+
+        <div class="form-field reveal">
+          <label for="email">Email Address <span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" autocomplete="email" />
+          <span class="field-error" id="err-email">Please enter a valid email.</span>
+        </div>
+
+        <div class="form-field reveal">
+          <label for="company">Company / Organisation</label>
+          <input type="text" id="company" name="company" placeholder="Acme Inc." autocomplete="organization" />
+        </div>
+
+        <div class="form-field full reveal">
+          <label for="service">Service Interest <span class="required">*</span></label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a service…</option>
+            <option value="brand_identity">Brand Identity</option>
+            <option value="digital_design">Digital Design</option>
+            <option value="campaign_creative">Campaign Creative</option>
+            <option value="strategy">Strategy</option>
+            <option value="multiple">Multiple Services</option>
+            <option value="not_sure">Not Sure Yet</option>
+          </select>
+          <span class="field-error" id="err-service">Please select a service.</span>
+        </div>
+
+        <div class="form-field full reveal">
+          <label>Estimated Budget</label>
+          <div class="budget-options" id="budgetOptions">
+            <button type="button" class="budget-option" data-value="under_10k">Under $10k</button>
+            <button type="button" class="budget-option" data-value="10k_25k">$10k – $25k</button>
+            <button type="button" class="budget-option" data-value="25k_50k">$25k – $50k</button>
+            <button type="button" class="budget-option" data-value="50k_plus">$50k+</button>
+            <button type="button" class="budget-option" data-value="tbd">TBD</button>
+          </div>
+          <input type="hidden" id="budget" name="budget" value="" />
+        </div>
+
+        <div class="form-field full reveal">
+          <label for="message">Tell Us About Your Project <span class="required">*</span></label>
+          <textarea id="message" name="message" placeholder="What are you working on? What problem are you trying to solve? Any deadlines or constraints we should know about?"></textarea>
+          <span class="field-error" id="err-message">Please tell us a bit about your project.</span>
+        </div>
+
+        <div class="form-field full reveal">
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="newsletter" name="newsletter" />
+            <span class="checkbox-label">Subscribe to our occasional newsletter — no spam, just good work and ideas.</span>
+          </label>
+        </div>
+
+        <div class="form-field full reveal">
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="consent" name="consent" required />
+            <span class="checkbox-label">I agree to Luminary Studio processing my data for the purpose of responding to this inquiry. <span class="required">*</span></span>
+          </label>
+          <span class="field-error" id="err-consent">Please confirm your consent to proceed.</span>
+        </div>
+
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Send Message
+          <span class="btn-arrow">→</span>
+        </button>
+        <span class="form-note">Typical response within 1 business day.</span>
+      </div>
+    </form>
+  </main>
+
+  <!-- SUCCESS PANEL (hidden until submit) -->
+  <div class="success-panel" id="successPanel" style="display:none;">
+    <div class="success-icon">✦</div>
+    <h2 class="success-title">Message<br><em>received.</em></h2>
+    <p class="success-body">Thank you for reaching out. We've got your brief and will be in touch within one business day to schedule a discovery call.</p>
+    <p class="success-meta">Reference: <span id="confirmRef"></span></p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-copy">© 2025 Luminary Studio. All rights reserved.</span>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  /* ─── GA4 + GTM TRACKING HELPERS ─── */
+
+  // Track form field focus (first interaction)
+  const fieldsFocused = {};
+  document.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('focus', () => {
+      if (!fieldsFocused[field.name]) {
+        fieldsFocused[field.name] = true;
+        gtag('event', 'form_field_focus', {
+          event_category: 'form_interaction',
+          field_name: field.name,
+          form_id: 'contact_form'
+        });
+        dataLayer.push({ event: 'form_field_focus', field_name: field.name });
+      }
+    });
+  });
+
+  // Track service selection change
+  document.getElementById('service').addEventListener('change', (e) => {
+    gtag('event', 'form_service_selected', {
+      event_category: 'form_interaction',
+      service_value: e.target.value,
+      form_id: 'contact_form'
+    });
+    dataLayer.push({ event: 'service_selected', service: e.target.value });
+  });
+
+  // Budget option selector
+  const budgetInput = document.getElementById('budget');
+  document.querySelectorAll('.budget-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.budget-option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      budgetInput.value = btn.dataset.value;
+      gtag('event', 'form_budget_selected', {
+        event_category: 'form_interaction',
+        budget_range: btn.dataset.value,
+        form_id: 'contact_form'
+      });
+      dataLayer.push({ event: 'budget_selected', budget: btn.dataset.value });
+    });
+  });
+
+  /* ─── VALIDATION ─── */
+  function showError(id, fieldId) {
+    document.getElementById(id).classList.add('visible');
+    document.getElementById(fieldId).classList.add('error');
+  }
+  function clearError(id, fieldId) {
+    document.getElementById(id).classList.remove('visible');
+    if (fieldId) document.getElementById(fieldId).classList.remove('error');
+  }
+
+  // Clear errors on input
+  ['firstName','lastName','email','service','message','consent'].forEach(id => {
+    const field = document.getElementById(id);
+    if (field) field.addEventListener('input', () => clearError('err-' + id, id));
+    if (field && field.type === 'checkbox') field.addEventListener('change', () => clearError('err-' + id, id));
+  });
+
+  function validateForm() {
+    let valid = true;
+    const errors = [];
+
+    if (!document.getElementById('firstName').value.trim()) {
+      showError('err-firstName', 'firstName'); valid = false; errors.push('firstName');
+    }
+    if (!document.getElementById('lastName').value.trim()) {
+      showError('err-lastName', 'lastName'); valid = false; errors.push('lastName');
+    }
+    const emailVal = document.getElementById('email').value.trim();
+    if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+      showError('err-email', 'email'); valid = false; errors.push('email');
+    }
+    if (!document.getElementById('service').value) {
+      showError('err-service', 'service'); valid = false; errors.push('service');
+    }
+    if (!document.getElementById('message').value.trim()) {
+      showError('err-message', 'message'); valid = false; errors.push('message');
+    }
+    if (!document.getElementById('consent').checked) {
+      showError('err-consent', 'consent'); valid = false; errors.push('consent');
+    }
+
+    if (!valid) {
+      // GA4: track validation failure
+      gtag('event', 'form_validation_error', {
+        event_category: 'form_interaction',
+        form_id: 'contact_form',
+        error_fields: errors.join(',')
+      });
+      dataLayer.push({ event: 'form_validation_error', error_fields: errors.join(',') });
+    }
+    return valid;
+  }
+
+  /* ─── FORM SUBMISSION ─── */
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.querySelector('.btn-arrow').textContent = '⟳';
+
+    // Collect form data for tracking
+    const formData = {
+      service: document.getElementById('service').value,
+      budget: document.getElementById('budget').value,
+      newsletter: document.getElementById('newsletter').checked,
+      hasCompany: !!document.getElementById('company').value.trim()
+    };
+
+    // ── GA4: form_submit event (primary conversion) ──
+    gtag('event', 'generate_lead', {
+      currency: 'USD',
+      value: 0,
+      form_id: 'contact_form',
+      service_interest: formData.service,
+      budget_range: formData.budget || 'not_specified',
+      newsletter_opt_in: formData.newsletter
+    });
+
+    // ── GA4: custom contact_form_submit event ──
+    gtag('event', 'contact_form_submit', {
+      event_category: 'conversion',
+      event_label: formData.service,
+      form_id: 'contact_form',
+      service: formData.service,
+      budget: formData.budget,
+      newsletter: formData.newsletter
+    });
+
+    // ── GTM dataLayer push ──
+    dataLayer.push({
+      event: 'contact_form_submit',
+      form_id: 'contact_form',
+      form_name: 'Contact Form',
+      service_interest: formData.service,
+      budget_range: formData.budget || 'not_specified',
+      newsletter_opt_in: formData.newsletter,
+      has_company: formData.hasCompany,
+      page_title: 'Contact'
+    });
+
+    // Simulate async submission (replace with real fetch)
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Generate confirmation reference
+    const ref = 'LUM-' + Date.now().toString(36).toUpperCase();
+    document.getElementById('confirmRef').textContent = ref;
+
+    // ── GA4: form confirmation view ──
+    gtag('event', 'form_submission_confirmed', {
+      event_category: 'conversion',
+      confirmation_ref: ref,
+      form_id: 'contact_form'
+    });
+    dataLayer.push({ event: 'form_confirmed', confirmation_ref: ref });
+
+    // Show success state
+    document.getElementById('contactForm').style.display = 'none';
+    document.querySelector('.form-title').style.display = 'none';
+    const successPanel = document.getElementById('successPanel');
+    successPanel.style.display = 'flex';
+    successPanel.classList.add('visible');
+  });
+
+  /* ─── SCROLL REVEAL ─── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ─── GA4: scroll depth ─── */
+  let scrollMarks = { 25: false, 50: false, 75: false, 90: false };
+  window.addEventListener('scroll', () => {
+    const pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    Object.keys(scrollMarks).forEach(mark => {
+      if (!scrollMarks[mark] && pct >= mark) {
+        scrollMarks[mark] = true;
+        gtag('event', 'scroll_depth', { depth_percentage: parseInt(mark), page_title: 'Contact' });
+        dataLayer.push({ event: 'scroll_depth', depth: mark + '%', page: 'contact' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
